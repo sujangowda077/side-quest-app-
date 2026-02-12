@@ -1,0 +1,434 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "SideQuest cyberpunk single-page landing (video hero, CTA funnel, screenshot showcase)",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Establish a consistent cyberpunk/dark/neon-green visual system (colors, glow, typography, spacing) across the single-page landing.",
+      "acceptanceCriteria": [
+        "All sections share the same dark/neon visual system (colors, glow, spacing, typography).",
+        "No blue/purple primary styling is introduced; neon green is the primary highlight color.",
+        "Theme remains readable (sufficient contrast for body text on #0A0A0A)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "create",
+          "description": "Create global styles and Tailwind layer overrides to define the dark/neon theme (deep black background, neon-green accents, readable foreground), consistent typography defaults, and reusable glow styles for interactive elements."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend Tailwind theme with SideQuest neon-green tokens and animations (e.g., glow, float, fade-in) used across sections, while keeping neon green as the primary highlight color."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Create the single-page landing layout container that applies the global theme consistently across all required sections, using shadcn-ui building blocks where appropriate. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Add a sticky top navbar with blur/glass effect, section links (Features/For Students/For Runners) and a highlighted Download CTA with smooth-scroll behavior.",
+      "acceptanceCriteria": [
+        "Navbar remains visible while scrolling and applies a blur/glass effect over the background.",
+        "Clicking each nav item smooth-scrolls to its section anchor.",
+        "“Download” is visually emphasized compared to other links and triggers the same download action as other Download CTAs."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/landing/Navbar.tsx",
+          "operation": "create",
+          "description": "Implement a sticky navbar with scroll-aware blur/glass styling, left logo, right-side anchor links, and a highlighted Download CTA button using shadcn-ui primitives (e.g., Button). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useScrollY.ts",
+          "operation": "create",
+          "description": "Create a small hook to track scroll position for navbar blur/glass-on-scroll behavior and the scroll progress indicator logic."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire Navbar into the landing page and ensure nav items smooth-scroll to the corresponding in-page section anchors; ensure the navbar Download CTA triggers the shared configurable download action. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Build a full-screen desktop hero with autoplaying muted looping MP4 background video, dark overlay, centered copy, and two CTAs (Download Now + Become a Runner with glowing hover).",
+      "acceptanceCriteria": [
+        "Hero video plays automatically (muted, looped) on supported browsers and does not block page interaction.",
+        "Overlay darkness is visibly within the requested range and keeps text legible.",
+        "Primary CTA opens a configurable URL in a new tab (or same tab if configured), without requiring backend changes.",
+        "Secondary CTA has a noticeable neon-glow hover effect."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/landing/Hero.tsx",
+          "operation": "create",
+          "description": "Create the hero section with background video layer, 60–70% black overlay, optional slight blur, centered heading/subheading/description, and two CTAs. Use shadcn-ui Button for CTA styling consistency and add neon-glow hover for secondary CTA. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/landing/config.ts",
+          "operation": "create",
+          "description": "Add frontend-only configurable constants for the download URL, whether to open in new tab, and other landing constants referenced by all Download CTAs."
+        },
+        {
+          "path": "frontend/public/assets/sidequest-hero-video.mp4",
+          "operation": "create",
+          "description": "Add the compressed MP4 hero video asset (target under 5–8 MB) as a static frontend asset to be used by the hero background video."
+        },
+        {
+          "path": "frontend/public/assets/generated/hero-fallback.dim_1920x1080.jpg",
+          "operation": "create",
+          "description": "Add the generated hero fallback poster image asset at frontend/public/assets/generated/hero-fallback.dim_1920x1080.jpg and reference it from the hero when video fails/cannot autoplay."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the Hero section at the top of the single-page landing, ensuring CTAs use the shared configurable download URL/action. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Add a fixed, centered, low-opacity SideQuest logo watermark layer behind content for depth.",
+      "acceptanceCriteria": [
+        "Logo watermark remains fixed while the page scrolls.",
+        "Opacity is within 0.05–0.08 and does not reduce content readability.",
+        "Logo watermark is centered and scales appropriately for common desktop sizes."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/sidequest-logo.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated SideQuest centered logo mark asset at frontend/public/assets/generated/sidequest-logo.dim_1024x1024.png for use as the fixed watermark and brand mark."
+        },
+        {
+          "path": "frontend/src/components/landing/FixedWatermark.tsx",
+          "operation": "create",
+          "description": "Implement a fixed-position centered watermark component using the generated logo with opacity 0.05–0.08 and safe pointer-events behavior so it never blocks interaction."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Mount the FixedWatermark behind all content layers (but above the background) to achieve the premium layered depth effect across the full page."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Create the “See SideQuest in Action” Real App Experience section with 4 screenshot blocks in phone mockups, alternating layout for first two, plus subtle floating animation.",
+      "acceptanceCriteria": [
+        "Section heading matches exactly: “See SideQuest in Action”.",
+        "Runner block uses left screenshot/right text; Print Shop uses right screenshot/left text on desktop.",
+        "Screenshots are displayed within phone mockups (frame + rounded corners + shadow/glow).",
+        "Phone mockups have a subtle floating animation that does not cause layout shift.",
+        "All provided headlines and paragraphs appear verbatim (English)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/phone-mockup-frame.dim_900x1800.png",
+          "operation": "create",
+          "description": "Add the generated phone mockup frame asset at frontend/public/assets/generated/phone-mockup-frame.dim_900x1800.png and use it as the overlay frame for the screenshot mockups."
+        },
+        {
+          "path": "frontend/public/assets/screenshots/runner.png",
+          "operation": "create",
+          "description": "Add the user-provided Runner screenshot asset (static) to be rendered inside the phone mockup in the Real App Experience section."
+        },
+        {
+          "path": "frontend/public/assets/screenshots/print-shop.png",
+          "operation": "create",
+          "description": "Add the user-provided Print Shop screenshot asset (static) to be rendered inside the phone mockup in the Real App Experience section."
+        },
+        {
+          "path": "frontend/public/assets/screenshots/food-menu.png",
+          "operation": "create",
+          "description": "Add the user-provided Food Menu screenshot asset (static) to be rendered inside the phone mockup in the Real App Experience section."
+        },
+        {
+          "path": "frontend/public/assets/screenshots/profile-mana.png",
+          "operation": "create",
+          "description": "Add the user-provided Profile + Mana screenshot asset (static) to be rendered inside the phone mockup in the Real App Experience section."
+        },
+        {
+          "path": "frontend/src/components/landing/PhoneMockup.tsx",
+          "operation": "create",
+          "description": "Create a reusable PhoneMockup component that composes the screenshot with the generated frame, rounded corners, shadow/neon glow, and a subtle floating animation. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/landing/RealAppExperience.tsx",
+          "operation": "create",
+          "description": "Implement “See SideQuest in Action” section with 4 feature blocks and required alternating layouts for the first two on desktop; include the exact provided headlines and body copy verbatim. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the RealAppExperience section into the page and add an id/anchor that the navbar “Features” link can scroll to."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Add an additional prominent Download CTA immediately after the screenshot showcase section, matching hero CTA styling and behavior.",
+      "acceptanceCriteria": [
+        "A clearly visible Download CTA exists immediately after the screenshot showcase section.",
+        "CTA triggers the same configurable download URL as other Download buttons.",
+        "CTA styling matches the neon-glow primary button style."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/landing/InlineDownloadCTA.tsx",
+          "operation": "create",
+          "description": "Create a reusable inline conversion CTA block that renders a prominent Download button styled like the primary hero CTA using shadcn-ui Button. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Place the inline Download CTA directly after the Real App Experience section and ensure it uses the shared configurable download action."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Implement a “How It Works” section with 3 neon-outline step cards and exact provided copy.",
+      "acceptanceCriteria": [
+        "Section contains exactly 3 cards with neon-outline styling.",
+        "Step titles and the parenthetical supporting texts are displayed verbatim.",
+        "Cards are responsive and stack cleanly on mobile."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/landing/HowItWorks.tsx",
+          "operation": "create",
+          "description": "Create the How It Works section with exactly three neon-outline cards and the exact provided step titles and parenthetical texts. Use shadcn-ui Card where appropriate. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the HowItWorks section into the single-page flow in an order that supports the CTA funnel and ensures consistent section spacing/theme."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Create a “For Everyone” section with three audience cards (Students, Runners, Vendors) with exact copy and responsive behavior.",
+      "acceptanceCriteria": [
+        "Section displays three distinct columns/cards on desktop and stacks vertically on mobile.",
+        "Each column includes the specified audience label and the provided sentence(s) verbatim.",
+        "Styling remains consistent with the cyberpunk neon theme."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/landing/ForEveryone.tsx",
+          "operation": "create",
+          "description": "Implement the For Everyone section with three responsive cards/columns (Students, Runners, Vendors) and the provided sentences verbatim; add sub-anchors so navbar “For Students” and “For Runners” can scroll to the correct content. Use shadcn-ui Card where appropriate. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the ForEveryone section into the page and connect the navbar links to the section/sub-anchors for “For Students” and “For Runners”."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Add “Campus Buzz Preview” fake UI feed with the three specified items and a subtle auto-scroll animation that respects reduced motion and uses no networking.",
+      "acceptanceCriteria": [
+        "Feed displays the three specified items verbatim.",
+        "A subtle scrolling animation is present and can be disabled/reduced for users who prefer reduced motion.",
+        "No backend calls or websockets are used to power the feed content."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/landing/CampusBuzzPreview.tsx",
+          "operation": "create",
+          "description": "Create the Campus Buzz Preview section rendering the three required feed items verbatim and a subtle auto-scroll/marquee-like animation that is reduced/disabled when prefers-reduced-motion is enabled."
+        },
+        {
+          "path": "frontend/src/hooks/usePrefersReducedMotion.ts",
+          "operation": "create",
+          "description": "Add a hook to detect prefers-reduced-motion so animations (feed scroll, fades, parallax, floats) can be reduced/disabled across the page."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire CampusBuzzPreview into the single-page flow without any networking dependencies."
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Create a final full-width CTA section with exact heading/subtext and a large glowing Download button using the shared configurable link.",
+      "acceptanceCriteria": [
+        "Final CTA heading and subtext match exactly.",
+        "Download button is visually prominent with neon glow styling and triggers the configured download URL.",
+        "Section spans full width and maintains dark styling consistent with the rest of the page."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/landing/FinalCTA.tsx",
+          "operation": "create",
+          "description": "Implement the final CTA section with exact heading/subtext and a large glowing Download button using shadcn-ui Button and the shared configurable download action. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Place the FinalCTA near the bottom of the page and ensure its Download action matches all other Download CTAs."
+        }
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "summary": "Add a minimal dark footer with logo, short description, configurable contact email, Privacy/Terms links, and social icons.",
+      "acceptanceCriteria": [
+        "Footer contains all listed elements.",
+        "Contact email is configurable (single constant/config value).",
+        "Privacy Policy and Terms are clickable links (can be placeholders if no URLs provided).",
+        "Footer styling is minimal, dark, and consistent with the neon theme."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/landing/Footer.tsx",
+          "operation": "create",
+          "description": "Create a minimal dark footer containing the logo, short description, configurable contact email, Privacy Policy and Terms links (placeholders allowed), and social icons (inline SVGs or existing icon approach) with subtle neon hover glow."
+        },
+        {
+          "path": "frontend/src/landing/config.ts",
+          "operation": "modify",
+          "description": "Add a configurable contact email (single constant) and placeholder URLs for Privacy Policy and Terms links."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the Footer at the bottom of the single-page landing and ensure styling matches the global neon theme."
+        }
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "summary": "Ensure responsive/mobile behavior: vertical stacking, full-width screenshots, reduced hero video height, and toned-down glow intensity on small screens.",
+      "acceptanceCriteria": [
+        "On small breakpoints, sections stack vertically with appropriate spacing.",
+        "Hero video is reduced in height and does not occupy full screen on mobile.",
+        "Glow effects are noticeably toned down on mobile compared to desktop.",
+        "Phone mockups/screenshot areas render full-width without horizontal scrolling."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Add responsive global adjustments for small breakpoints (e.g., reduce glow intensity, ensure body text sizing/spacing) to prevent overpowering visuals on mobile."
+        },
+        {
+          "path": "frontend/src/components/landing/Hero.tsx",
+          "operation": "modify",
+          "description": "Adjust hero layout to be full-screen on desktop but reduced height on mobile; ensure CTAs remain visible and readable, with toned-down glow on small screens."
+        },
+        {
+          "path": "frontend/src/components/landing/PhoneMockup.tsx",
+          "operation": "modify",
+          "description": "Ensure phone mockups/screenshot containers become full-width on mobile and never introduce horizontal scrolling."
+        },
+        {
+          "path": "frontend/src/components/landing/RealAppExperience.tsx",
+          "operation": "modify",
+          "description": "Ensure blocks stack vertically on mobile while preserving the desktop alternating layout requirements for the first two blocks."
+        }
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "summary": "Implement hero video performance: lazy-load MP4, ensure size target, and show static fallback image when video fails/cannot autoplay.",
+      "acceptanceCriteria": [
+        "Hero video is loaded lazily (not eagerly blocking initial render).",
+        "A fallback static image is displayed when the video cannot be played/loaded.",
+        "Hero text and CTAs remain readable with the fallback.",
+        "Implementation does not require backend support (static asset served from the frontend)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/landing/Hero.tsx",
+          "operation": "modify",
+          "description": "Implement lazy-loading behavior for the MP4 (defer loading until needed), handle autoplay failures gracefully, and render the static fallback image (frontend/public/assets/generated/hero-fallback.dim_1920x1080.jpg) when the video cannot play/load while preserving overlay readability."
+        },
+        {
+          "path": "frontend/public/assets/generated/hero-fallback.dim_1920x1080.jpg",
+          "operation": "create",
+          "description": "Ensure the generated fallback poster image exists at frontend/public/assets/generated/hero-fallback.dim_1920x1080.jpg and is used by the Hero component when video playback is unavailable."
+        }
+      ]
+    },
+    {
+      "id": "REQ-14",
+      "summary": "Add premium interactions: fade-in on section entry, subtle parallax where appropriate, neon hover glow, scroll progress indicator, and reduced-motion compliance.",
+      "acceptanceCriteria": [
+        "Sections/content animate in with smooth fades and/or slight motion without jank.",
+        "A scroll progress indicator is visible and updates as the user scrolls.",
+        "Interactive elements (buttons/links/cards) show neon hover glow.",
+        "If the OS/browser prefers-reduced-motion is enabled, animations are reduced/disabled appropriately."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/landing/ScrollProgress.tsx",
+          "operation": "create",
+          "description": "Add a scroll progress indicator component (e.g., thin bar at top) driven by scroll position and styled to match the neon theme."
+        },
+        {
+          "path": "frontend/src/hooks/useInViewFadeIn.ts",
+          "operation": "create",
+          "description": "Create an IntersectionObserver-based hook/utility to apply fade-in-on-entry to sections in a way that avoids jank and respects prefers-reduced-motion."
+        },
+        {
+          "path": "frontend/src/components/landing/ParallaxLayer.tsx",
+          "operation": "create",
+          "description": "Implement a small parallax helper component for subtle depth effects (used sparingly, e.g., watermark or background accents) and disable/reduce it when prefers-reduced-motion is enabled."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Add reusable neon hover glow styles for links/buttons/cards and define reduced-motion overrides so animations can be reduced/disabled."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire ScrollProgress at the top-level and wrap key sections with fade-in/parallax utilities as appropriate (including subtle float already used for phone mockups), ensuring reduced-motion settings are respected."
+        }
+      ]
+    },
+    {
+      "id": "REQ-15",
+      "summary": "Ensure the landing copy and hierarchy clearly position SideQuest as a campus super app, gamified ecosystem, student earning platform, and vendor management system without claiming new features.",
+      "acceptanceCriteria": [
+        "The landing page prominently conveys the four-point positioning in its content hierarchy (hero + supporting sections).",
+        "No additional unrequested capabilities are claimed beyond the provided copy/sections.",
+        "All user-facing text included in the page is in English."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/landing/Hero.tsx",
+          "operation": "modify",
+          "description": "Ensure hero description and supporting microcopy emphasize the provided core positioning (campus super app, gamified ecosystem, student earning platform, vendor management system) without adding new claims."
+        },
+        {
+          "path": "frontend/src/components/landing/ForEveryone.tsx",
+          "operation": "modify",
+          "description": "Ensure the Students/Runners/Vendors content supports the required positioning using only the provided sentences and avoids introducing additional capabilities."
+        },
+        {
+          "path": "frontend/src/components/landing/Footer.tsx",
+          "operation": "modify",
+          "description": "Add a short, accurate footer description summarizing SideQuest as a campus super app and gamified ecosystem without adding unrequested features."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Verify the overall section order and headings reinforce the core message across hero and supporting sections while keeping all copy in English."
+        }
+      ]
+    }
+  ]
+}

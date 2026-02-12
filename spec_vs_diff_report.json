@@ -1,0 +1,122 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-11T13:13:20.836Z",
+  "summary": "Diff adds a new single-page landing composition (App.tsx) with navbar, hero video, watermark, sections, CTAs, scroll progress, and footer. Several spec mismatches remain: Campus Buzz item text/emojis, Real App Experience copy/layout/assets, final CTA button label, and hero video lazy-load behavior. Also introduces unrequested third-party icon libraries and edits/adds files in immutablePaths.",
+  "missing_requirements": [
+    {
+      "id": "REQ-5",
+      "requirement": "Use the user-provided real screenshots inside phone mockups with the provided headlines/paragraphs appearing verbatim, and screenshots displayed within phone mockups using the provided phone mockup frame asset.",
+      "reason": "The section exists and alternates layout for the first two blocks, but the copy shown is not guaranteed/verbatim (and includes non-goal copy about UPI/OTP), and the phone frame asset is not used (mockup uses a simple border overlay rather than the provided phone-mockup-frame image).",
+      "evidence": [
+        "frontend/src/components/landing/RealAppExperience.tsx",
+        "frontend/src/components/landing/PhoneMockup.tsx"
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "requirement": "Campus Buzz Preview feed must display the three specified items verbatim including emojis: “🔥 50% off after 4 PM”, “📢 Print shop closing at 7 PM”, “🎉 Free fries with combo meal”.",
+      "reason": "Feed texts omit the required leading emojis and therefore are not verbatim.",
+      "evidence": [
+        "frontend/src/components/landing/CampusBuzzPreview.tsx"
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "requirement": "Final CTA section must have a large glowing “Download” button (same configurable link as other Download CTAs).",
+      "reason": "The final CTA button label is “Download Now”, not “Download”.",
+      "evidence": [
+        "frontend/src/components/landing/FinalCTA.tsx"
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "requirement": "Lazy-load the hero video (not eagerly blocking initial render) and show fallback image if video fails/cannot autoplay.",
+      "reason": "Fallback image handling exists via `poster` and `videoError`, but there is no clear evidence of lazy-loading behavior (e.g., `preload=\"none\"`, intersection-based loading, or conditional source attachment). The component also calls `video.play()` immediately on mount.",
+      "evidence": [
+        "frontend/src/components/landing/Hero.tsx"
+      ]
+    },
+    {
+      "id": "REQ-14",
+      "requirement": "Add premium interaction touches including subtle parallax scrolling where appropriate (while respecting reduced motion).",
+      "reason": "Fade-in, hover glow, reduced-motion handling, and scroll progress indicator are present, but there is no evidence of any parallax implementation in the provided diff summary.",
+      "evidence": [
+        "frontend/src/index.css",
+        "frontend/src/components/landing/ScrollProgress.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Introduced unrequested third-party icon libraries (lucide-react and react-icons) for landing UI icons.",
+      "reason": "BuildRequest does not request adding icon libraries; diff shows usage of these packages in multiple components.",
+      "evidence": [
+        "frontend/src/components/landing/CampusBuzzPreview.tsx",
+        "frontend/src/components/landing/ForEveryone.tsx",
+        "frontend/src/components/landing/Navbar.tsx",
+        "frontend/src/components/landing/Footer.tsx"
+      ]
+    },
+    {
+      "description": "Added marketing/footer attribution link to caffeine.ai with UTM parameters.",
+      "reason": "Footer requirements did not include external attribution; this is additional content/behavior beyond spec.",
+      "evidence": [
+        "frontend/src/components/landing/Footer.tsx"
+      ]
+    },
+    {
+      "description": "Added backend canister file `backend/main.mo` (empty actor).",
+      "reason": "Landing page work did not request backend changes; this backend addition appears unrelated to the marketing page UI.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "description": "Changes/additions to immutablePaths (useActor.ts, useInternetIdentity.ts) despite constraint that these must not be edited.",
+      "reason": "BuildRequest explicitly marks these paths as immutable; diff summary shows these paths added (which implies modification/replacement in a real repo).",
+      "evidence": [
+        "frontend/src/hooks/useActor.ts",
+        "frontend/src/hooks/useInternetIdentity.ts"
+      ]
+    },
+    {
+      "description": "Added copy claiming payment via UPI and OTP-based delivery in the Real App Experience section.",
+      "reason": "BuildRequest non-goals explicitly say not to implement payments/UPI integration or OTP delivery flows (landing copy only). This copy introduces those flows as product details and may be considered beyond the requested landing copy.",
+      "evidence": [
+        "frontend/src/components/landing/RealAppExperience.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.74,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/landing/CampusBuzzPreview.tsx",
+    "frontend/src/components/landing/FinalCTA.tsx",
+    "frontend/src/components/landing/FixedWatermark.tsx",
+    "frontend/src/components/landing/Footer.tsx",
+    "frontend/src/components/landing/ForEveryone.tsx",
+    "frontend/src/components/landing/Hero.tsx",
+    "frontend/src/components/landing/HowItWorks.tsx",
+    "frontend/src/components/landing/InlineDownloadCTA.tsx",
+    "frontend/src/components/landing/Navbar.tsx",
+    "frontend/src/components/landing/PhoneMockup.tsx",
+    "frontend/src/components/landing/RealAppExperience.tsx",
+    "frontend/src/components/landing/ScrollProgress.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInViewFadeIn.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/usePrefersReducedMotion.ts",
+    "frontend/src/hooks/useScrollY.ts",
+    "frontend/src/index.css",
+    "frontend/src/landing/config.ts",
+    "frontend/src/main.tsx",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

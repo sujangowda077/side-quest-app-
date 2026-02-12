@@ -1,0 +1,302 @@
+{
+  "kind": "build_request",
+  "title": "SideQuest cyberpunk landing page with video hero, CTA funnel, and screenshot showcase",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create a single-page marketing landing page for “SideQuest” with a cyberpunk/dark/neon-green visual theme: deep black background (#0A0A0A), primary neon green (#39FF14), soft glow accents, futuristic high-energy mood, and consistent typography/layout across all sections.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Style: Cyberpunk / Dark / Neon Green\nMood: High-energy, gamified, futuristic\nPrimary Color: Neon Green (#39FF14)\nBackground: Deep Black (#0A0A0A)\nAccent: Soft glow effects"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All sections share the same dark/neon visual system (colors, glow, spacing, typography).",
+        "No blue/purple primary styling is introduced; neon green is the primary highlight color.",
+        "Theme remains readable (sufficient contrast for body text on #0A0A0A)."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Implement a sticky top navbar with a blur/glass effect on scroll, containing: left-aligned SideQuest logo; right-aligned links “Features”, “For Students”, “For Runners”, and a highlighted “Download” CTA. Links must scroll to the corresponding sections on the same page.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "7️⃣ NAVBAR\n\nSticky navbar with blur effect.\n\nLeft:\nLogo\n\nRight:\nFeatures\nFor Students\nFor Runners\nDownload (highlighted)"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Navbar remains visible while scrolling and applies a blur/glass effect over the background.",
+        "Clicking each nav item smooth-scrolls to its section anchor.",
+        "“Download” is visually emphasized compared to other links and triggers the same download action as other Download CTAs."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Build a full-screen hero section (desktop) with an autoplaying, muted, looping MP4 background video, a dark overlay (60–70% black), optional slight blur, and optimized playback. Center hero content must include: Heading “SideQuest”, subheading “Level Up Your Campus Life”, the provided description copy, a primary “Download Now” CTA (opens a configurable custom link), and a secondary “Become a Runner” CTA with a glowing hover animation.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "1️⃣ HERO SECTION (FULL SCREEN WITH VIDEO BACKGROUND)\nBackground Setup\n\nFull-screen background video (your app demo video)\n\nDark overlay (60–70% black)\n\nSlight blur (optional)\n\nVideo autoplay, muted, looped\n\nOptimized for performance\n\nHero Content (Centered)\n\nBig Heading:\nSideQuest\n\nSubheading:\nLevel Up Your Campus Life\n\nDescription:\nSideQuest transforms everyday campus life into a gamified ecosystem. Order food, print assignments, earn rewards, and complete delivery quests — all in one powerful super app.\n\nPrimary CTA Button:\nDownload Now\n\n(Button opens your custom link)\n\nSecondary CTA:\nBecome a Runner\n\nAdd glowing hover animation."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Hero video plays automatically (muted, looped) on supported browsers and does not block page interaction.",
+        "Overlay darkness is visibly within the requested range and keeps text legible.",
+        "Primary CTA opens a configurable URL in a new tab (or same tab if configured), without requiring backend changes.",
+        "Secondary CTA has a noticeable neon-glow hover effect."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Add a fixed, centered, large SideQuest logo layer that does not scroll, at very low opacity (0.05–0.08) to create a premium layered depth effect behind the page content.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Fixed Logo Effect\n\nLarge SideQuest logo centered\n\nVery low opacity (0.05–0.08)\n\nposition: fixed\n\nDoes NOT scroll\n\nGives premium layered depth effect"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Logo watermark remains fixed while the page scrolls.",
+        "Opacity is within 0.05–0.08 and does not reduce content readability.",
+        "Logo watermark is centered and scales appropriately for common desktop sizes."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Implement a “Real App Experience” section titled “See SideQuest in Action” that displays four feature blocks using the user-provided real screenshots inside phone mockups, with alternating left/right layout for the first two blocks (Runner: screenshot left/text right; Print Shop: screenshot right/text left), and clear headline/body copy for all four blocks (Runner, Print Shop, Food Menu, Profile + Mana). Add subtle floating animation to the phone mockups.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "2️⃣ REAL APP EXPERIENCE SECTION\n\nTitle:\nSee SideQuest in Action\n\nUse your REAL screenshots inside phone mockups.\n\n🏃 Runner Screen (First Screenshot)\n...\nPlacement:\nLeft = Screenshot\nRight = Text\n\nHeadline:\nEarn Between Classes\n\nText:\nAccept delivery quests, see your earnings upfront, and get paid instantly via UPI. Secure OTP-based delivery ensures safe handoffs.\n\n🖨 Print Shop Screen\n...\nPlacement:\nRight = Screenshot\nLeft = Text\n\nHeadline:\nSmart Print Ordering\n\nText:\nUpload PDFs directly from your phone. Choose B&W or color, single or double-sided, add binding, and get notified when your prints are ready.\n\n🍔 Food Menu Screen\n...\nHeadline:\nLive Campus Menus\n\nText:\nBrowse real-time menus from campus cafes, see what’s available, and order instantly. No more waiting in long lines.\n\n👤 Profile + Mana Screen\n...\nHeadline:\nGamified Rewards System\n\nText:\nEvery order earns Mana (XP). Track your balance, level up your profile, and unlock status within the campus ecosystem.\n\n⚡ PREMIUM TOUCHES TO ADD\n...\nSlight floating animation on phone mockups"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Section heading matches exactly: “See SideQuest in Action”.",
+        "Runner block uses left screenshot/right text; Print Shop uses right screenshot/left text on desktop.",
+        "Screenshots are displayed within phone mockups (frame + rounded corners + shadow/glow).",
+        "Phone mockups have a subtle floating animation that does not cause layout shift.",
+        "All provided headlines and paragraphs appear verbatim (English)."
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Add an additional “Download” CTA directly after the Real App Experience section (as part of the conversion strategy), styled consistently with the primary hero CTA and visually prominent on the dark background.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "🔥 IMPORTANT CONVERSION STRATEGY\n\nPlace Download button:\n\nHero section\n\nAfter screenshot section\n\nFinal CTA\n\nIn sticky navbar\n\nNever let user scroll too far without seeing CTA."
+        ]
+      },
+      "acceptanceCriteria": [
+        "A clearly visible Download CTA exists immediately after the screenshot showcase section.",
+        "CTA triggers the same configurable download URL as other Download buttons.",
+        "CTA styling matches the neon-glow primary button style."
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Create a “How It Works” section with 3 simple steps displayed as neon-outline cards: (1) “Choose Your Quest” with supporting text “(Order food, print, or deliver)”; (2) “Complete the Action” with “(Pick up, deliver, or upload)”; (3) “Earn Rewards” with “(Mana or instant cash)”.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "3️⃣ HOW IT WORKS SECTION\n\n3 Steps (Simple & Clean)\n\nStep 1:\nChoose Your Quest\n(Order food, print, or deliver)\n\nStep 2:\nComplete the Action\n(Pick up, deliver, or upload)\n\nStep 3:\nEarn Rewards\n(Mana or instant cash)\n\nUse neon outline cards."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Section contains exactly 3 cards with neon-outline styling.",
+        "Step titles and the parenthetical supporting texts are displayed verbatim.",
+        "Cards are responsive and stack cleanly on mobile."
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Create a “For Everyone” section with three columns/cards for: Students (“Skip queues. Upload prints. Earn rewards.”), Runners (“Earn money between classes.”), and Vendors (“Manage orders with a real-time dashboard.”).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "4️⃣ FOR EVERYONE SECTION\n\nThree columns:\n\n🎓 Students\nSkip queues. Upload prints. Earn rewards.\n\n🏃 Runners\nEarn money between classes.\n\n🏪 Vendors\nManage orders with a real-time dashboard."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Section displays three distinct columns/cards on desktop and stacks vertically on mobile.",
+        "Each column includes the specified audience label and the provided sentence(s) verbatim.",
+        "Styling remains consistent with the cyberpunk neon theme."
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Create a “Campus Buzz Preview” section that renders a fake UI feed containing: “🔥 50% off after 4 PM”, “📢 Print shop closing at 7 PM”, and “🎉 Free fries with combo meal”, with a subtle scroll/auto-scroll animation that feels like a live feed but does not rely on real-time networking.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "5️⃣ CAMPUS BUZZ PREVIEW SECTION\n\nCreate a fake UI feed showing:\n\n🔥 50% off after 4 PM\n📢 Print shop closing at 7 PM\n🎉 Free fries with combo meal\n\nAdd subtle scroll animation."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Feed displays the three specified items verbatim.",
+        "A subtle scrolling animation is present and can be disabled/reduced for users who prefer reduced motion.",
+        "No backend calls or websockets are used to power the feed content."
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Create a final full-width CTA section with heading “Ready to Start Your Quest?”, subtext “Eat. Earn. Connect.”, and a large glowing “Download” button (same configurable link as other Download CTAs).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "6️⃣ FINAL CTA SECTION\n\nFull-width dark section.\n\nHeading:\nReady to Start Your Quest?\n\nSubtext:\nEat. Earn. Connect.\n\nLarge glowing Download button again."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Final CTA heading and subtext match exactly.",
+        "Download button is visually prominent with neon glow styling and triggers the configured download URL.",
+        "Section spans full width and maintains dark styling consistent with the rest of the page."
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "text": "Add a minimal dark footer that includes: logo, short description (summarizing SideQuest as a campus super app and gamified ecosystem), contact email (configurable), Privacy Policy link, Terms link, and social icons.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "8️⃣ FOOTER\n\nInclude:\n\nLogo\n\nShort description\n\nContact email\n\nPrivacy Policy\n\nTerms\n\nSocial icons\n\nMinimal dark style."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Footer contains all listed elements.",
+        "Contact email is configurable (single constant/config value).",
+        "Privacy Policy and Terms are clickable links (can be placeholders if no URLs provided).",
+        "Footer styling is minimal, dark, and consistent with the neon theme."
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "text": "Ensure mobile behavior matches the spec: stack sections vertically, show full-width screenshots, reduce hero video height (not full screen), and reduce glow intensity to avoid overpowering visuals on small screens.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "📱 MOBILE BEHAVIOR\n\nStack sections vertically\n\nFull-width screenshots\n\nSmaller video height (not full screen)\n\nReduce glow intensity"
+        ]
+      },
+      "acceptanceCriteria": [
+        "On small breakpoints, sections stack vertically with appropriate spacing.",
+        "Hero video is reduced in height and does not occupy full screen on mobile.",
+        "Glow effects are noticeably toned down on mobile compared to desktop.",
+        "Phone mockups/screenshot areas render full-width without horizontal scrolling."
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "text": "Implement video performance behaviors: MP4 asset targeted under 5–8 MB, lazy-load the hero video, and display a static fallback image if the video fails to load or cannot autoplay. The fallback must preserve the hero’s readability and visual theme.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "🎥 VIDEO PERFORMANCE INSTRUCTIONS\n\nCompress video under 5–8 MB\n\nUse MP4\n\nLazy load\n\nFallback static image if video fails"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Hero video is loaded lazily (not eagerly blocking initial render).",
+        "A fallback static image is displayed when the video cannot be played/loaded.",
+        "Hero text and CTAs remain readable with the fallback.",
+        "Implementation does not require backend support (static asset served from the frontend)."
+      ]
+    },
+    {
+      "id": "REQ-14",
+      "text": "Add premium interaction touches across the page: smooth fade-in animations on section entry, subtle parallax scrolling where appropriate, neon hover glow on interactive elements, a scroll progress indicator, and ensure animations respect reduced-motion settings.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "⚡ PREMIUM TOUCHES TO ADD\n\nSmooth fade-in animations\n\nParallax scrolling\n\nNeon hover glow\n\nScroll progress indicator\n\nSlight floating animation on phone mockups"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Sections/content animate in with smooth fades and/or slight motion without jank.",
+        "A scroll progress indicator is visible and updates as the user scrolls.",
+        "Interactive elements (buttons/links/cards) show neon hover glow.",
+        "If the OS/browser prefers-reduced-motion is enabled, animations are reduced/disabled appropriately."
+      ]
+    },
+    {
+      "id": "REQ-15",
+      "text": "Ensure the page’s copy and information architecture clearly communicates the core message that SideQuest is not just a food app, but a campus super app, a gamified ecosystem, a student earning platform, and a vendor management system, without adding new product features beyond what the landing page describes.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "🎯 CORE MESSAGE THE PAGE MUST COMMUNICATE\n\nSideQuest is not just a food app.\n\nIt is:\n• A campus super app\n• A gamified ecosystem\n• A student earning platform\n• A vendor management system\n\nIt replaces chaos with structure."
+        ]
+      },
+      "acceptanceCriteria": [
+        "The landing page prominently conveys the four-point positioning in its content hierarchy (hero + supporting sections).",
+        "No additional unrequested capabilities are claimed beyond the provided copy/sections.",
+        "All user-facing text included in the page is in English."
+      ]
+    }
+  ],
+  "constraints": [
+    "Frontend immutablePaths must not be edited: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui.",
+    "Do not add third-party authentication providers; only Internet Identity is supported (not required for this landing page).",
+    "Do not introduce real-time features (no websockets/socket.io)."
+  ],
+  "nonGoals": [
+    "Building the actual SideQuest app functionality (ordering, printing, runner payouts, vendor dashboard) beyond the marketing page UI.",
+    "Implementing payments/UPI integration or OTP delivery flows (landing copy only).",
+    "Adding backend persistence or APIs for the fake feed content."
+  ],
+  "imageRequirements": {
+    "required": [
+      "SideQuest centered logo mark in neon green on transparent background (sidequest-logo.dim_1024x1024.png)",
+      "Hero fallback poster image with cyberpunk dark style, subtle neon-green glow accents, and space for centered hero text (hero-fallback.dim_1920x1080.jpg)",
+      "Phone mockup frame (front view) with dark bezel and subtle neon-green edge glow on transparent background (phone-mockup-frame.dim_900x1800.png)"
+    ],
+    "edits": []
+  }
+}
