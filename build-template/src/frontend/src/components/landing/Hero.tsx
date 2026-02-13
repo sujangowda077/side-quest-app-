@@ -46,7 +46,7 @@ export function Hero() {
             className="w-full h-full object-cover"
             onError={() => setVideoError(true)}
           >
-            <source src={hero} type="video/mp4" />
+            <source src='https://wczartlciqwwcvivrtcg.supabase.co/storage/v1/object/public/sidequest-assets/sidequest-bg.mp4' type="video/mp4" />
           </video>
         ) : (
           <img
