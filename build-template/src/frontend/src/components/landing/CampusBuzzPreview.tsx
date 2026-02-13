@@ -3,9 +3,9 @@ import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { Flame, Megaphone, PartyPopper } from 'lucide-react';
 
 const buzzItems = [
-  { icon: Flame, text: '50% off after 4 PM', color: 'text-orange-500' },
-  { icon: Megaphone, text: 'Print shop closing at 7 PM', color: 'text-blue-500' },
-  { icon: PartyPopper, text: 'Free fries with combo meal', color: 'text-yellow-500' }
+  { icon: Flame, text: 'Runner Slots Open Now', color: 'text-orange-500' },
+  { icon: Megaphone, text: 'Tutor Available for Math', color: 'text-blue-500' },
+  { icon: PartyPopper, text: 'Print Queue Increasing', color: 'text-yellow-500' }
 ];
 
 export function CampusBuzzPreview() {
