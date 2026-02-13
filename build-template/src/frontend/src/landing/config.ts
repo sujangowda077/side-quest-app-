@@ -1,5 +1,5 @@
 export const LANDING_CONFIG = {
-  downloadUrl: 'https://drive.google.com/file/d/1hpcDaV5kgJAX9HDesRchmPOrdEo36CLW/view?usp=drivesdk',
+  downloadUrl: 'https://drive.google.com/file/d/1xRBFDXkyTBB47x1NL3gdoPprM5y_3_iv/view?usp=sharing',
   openInNewTab: true,
   contactEmail: 'office.sidequest26@gmail.com',
   privacyPolicyUrl: '#privacy',
