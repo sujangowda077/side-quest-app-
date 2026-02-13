@@ -6,7 +6,7 @@ export const LANDING_CONFIG = {
   termsUrl: '#terms',
   social: {
     twitter: 'https://twitter.com/sidequest',
-    instagram: 'https://www.instagram.com/side_quest26?igsh=ZG94a3BqMGc0d2lh',
+    instagram: 'https://www.instagram.com/side_quest26/',
     linkedin: 'https://linkedin.com/company/sidequest'
   }
 };
