@@ -1,58 +1,54 @@
-import { LANDING_CONFIG } from '@/landing/config';
-import { SiX, SiInstagram, SiLinkedin } from 'react-icons/si';
-import logo from "@/assets/screenshots/hero.png";
+import { Instagram, Linkedin, Twitter } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
-  const appIdentifier = typeof window !== 'undefined' 
-    ? encodeURIComponent(window.location.hostname) 
-    : 'sidequest-app';
-
   return (
-    <footer className="relative z-10 bg-background border-t border-border py-12">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-3 gap-8 mb-8">
-          {/* Logo and Description */}
-          <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <img
-                src={logo}
-                alt="SideQuest"
-                className="w-10 h-10"
-              />
-              <span className="text-2xl font-bold text-neon-green">SideQuest</span>
-            </div>
-            <p className="text-foreground/70 text-sm">
-              A campus super app and gamified ecosystem that transforms everyday campus life into an engaging experience.
+    <footer className="bg-black border-t border-neon-green/20 mt-20">
+      <div className="container mx-auto px-6 py-16">
+        <div className="grid md:grid-cols-3 gap-12">
+
+          {/* LEFT SECTION */}
+          <div>
+            <h3 className="text-2xl font-bold text-neon-green neon-text-glow mb-4">
+              SideQuest
+            </h3>
+            <p className="text-foreground/80 leading-relaxed max-w-sm">
+              A campus super app and gamified ecosystem that transforms
+              everyday campus life into an engaging experience.
             </p>
           </div>
 
-          {/* Contact */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-foreground">Contact</h3>
-            <p className="text-foreground/70 text-sm">
-              <a
-                href={`mailto:${LANDING_CONFIG.contactEmail}`}
-                className="hover:text-neon-green transition-colors"
-              >
-                {LANDING_CONFIG.contactEmail}
-              </a>
+          {/* CONTACT SECTION */}
+          <div>
+            <h4 className="text-lg font-semibold text-white mb-4">
+              Contact
+            </h4>
+            <p className="text-foreground/80">
+              office.sidequest26@gmail.com
             </p>
           </div>
 
-          {/* Legal */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-foreground">Legal</h3>
-            <div className="flex flex-col space-y-2 text-sm">
+          {/* LEGAL SECTION */}
+          <div>
+            <h4 className="text-lg font-semibold text-white mb-4">
+              Legal
+            </h4>
+
+            <div className="space-y-2">
               <a
-                href={LANDING_CONFIG.privacyPolicyUrl}
-                className="text-foreground/70 hover:text-neon-green transition-colors"
+                href="/privacy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-foreground/80 hover:text-neon-green transition"
               >
                 Privacy Policy
               </a>
+
               <a
-                href={LANDING_CONFIG.termsUrl}
-                className="text-foreground/70 hover:text-neon-green transition-colors"
+                href="/terms"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-foreground/80 hover:text-neon-green transition"
               >
                 Terms of Service
               </a>
@@ -60,47 +56,61 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Social Icons */}
-        <div className="flex justify-center space-x-6 mb-8">
+        {/* SOCIAL ICONS */}
+        <div className="flex justify-center gap-6 mt-12">
           <a
-            href={LANDING_CONFIG.social.twitter}
+            href="https://twitter.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-foreground/70 hover:text-neon-green transition-colors hover-glow"
+            className="hover:text-neon-green transition"
           >
-            <SiX size={24} />
+            <Twitter size={22} />
           </a>
+
           <a
-            href={LANDING_CONFIG.social.instagram}
+            href="https://www.instagram.com/side_quest26/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-foreground/70 hover:text-neon-green transition-colors hover-glow"
+            className="hover:text-neon-green transition"
           >
-            <SiInstagram size={24} />
+            <Instagram size={22} />
           </a>
+
           <a
-            href={LANDING_CONFIG.social.linkedin}
+            href="https://linkedin.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-foreground/70 hover:text-neon-green transition-colors hover-glow"
+            className="hover:text-neon-green transition"
           >
-            <SiLinkedin size={24} />
+            <Linkedin size={22} />
           </a>
         </div>
 
-        {/* Copyright and Attribution */}
-        <div className="text-center text-sm text-foreground/60 space-y-2">
-          <p>© {currentYear} SideQuest. All rights reserved.</p>
+        {/* BOTTOM COPYRIGHT + LINKS */}
+        <div className="mt-12 text-center text-sm text-foreground/70 space-y-3">
+
+          <p>© 2026 SideQuest. All rights reserved.</p>
+
           <p>
-            Buy me a coffee ☕ —{' '}
+            Buy me a coffee ☕ —{" "}
             <a
-              href={`https://www.linkedin.com/in/sujan-gowda-s-24a0442b1?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app`}
+              href="https://www.linkedin.com/in/sujan-gowda-s-24a0442b1/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-neon-green hover:underline"
+              className="text-neon-green font-semibold hover:underline transition"
             >
               @SujanGowda
             </a>
+
+            {"  |  "}
+
+            {/* ✅ FIXED: Using Link instead of <a> */}
+            <Link
+              to="/aboutus"
+              className="text-neon-green font-semibold hover:underline transition"
+            >
+              @aboutus
+            </Link>
           </p>
         </div>
       </div>
