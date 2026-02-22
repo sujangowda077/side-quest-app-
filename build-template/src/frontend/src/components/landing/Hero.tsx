@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { LANDING_CONFIG } from '@/landing/config';
 import hero from '@/assets/screenshots/sidequest-bg.mp4';
 import heroBg from "@/assets/screenshots/hero-bg.png";
-
+import { Link } from "react-router-dom";
 export function Hero() {
   const [videoError, setVideoError] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -87,19 +87,17 @@ export function Hero() {
           <Button
             onClick={handleDownload}
             size="lg"
-            className="w-full sm:w-auto bg-neon-green text-background hover:bg-neon-green/90 neon-glow hover-glow text-lg px-8 py-6 font-bold"
+            className="px-8 py-3 bg-neon-green text-black font-semibold rounded-lg hover:shadow-[0_0_25px_#39FF14] transition-all duration-300"
           >
             Download Now
           </Button>
-
-          <Button
-            onClick={handleBecomeRunner}
-            size="lg"
-            variant="outline"
-            className="w-full sm:w-auto border-neon-green text-neon-green hover:bg-neon-green/10 neon-border hover-glow text-lg px-8 py-6 font-semibold"
+{/*
+          <Link
+            to="how-it-works"
+            className="px-8 py-3 border border-neon-green text-neon-green rounded-lg hover:shadow-[0_0_25px_#39FF14] hover:bg-neon-green hover:text-black transition-all duration-300"
           >
-            Become a Runner
-          </Button>
+            Explore Now
+          </Link>*/}
         </div>
       </div>
     </section>

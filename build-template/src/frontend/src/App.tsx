@@ -12,6 +12,7 @@ import { CampusBuzzPreview } from '@/components/landing/CampusBuzzPreview';
 import { FinalCTA } from '@/components/landing/FinalCTA';
 import { Footer } from '@/components/landing/Footer';
 import { FoundersSection } from '@/components/founders/FoundersSection'; // ✅ Added
+import HowItWorksPage from '@/components/pages/how-it-works/HowItWorksPage'; // ✅ Added, but not used in routing yet
 
 // ✅ Your original landing page layout (UNCHANGED)
 function LandingPage() {
@@ -42,6 +43,7 @@ function App() {
     <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/aboutus" element={<FoundersSection />} />
+      <Route path="/how-it-works" element={<HowItWorksPage />} />
     </Routes>
   );
 }

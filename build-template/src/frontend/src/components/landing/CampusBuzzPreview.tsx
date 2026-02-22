@@ -15,7 +15,9 @@ export function CampusBuzzPreview() {
   return (
     <section
       ref={ref}
-      className={`relative z-10 py-20 md:py-32 overflow-hidden ${isVisible ? 'fade-in' : 'opacity-0'}`}
+      className={`relative z-10 py-20 md:py-32 overflow-hidden ${
+        isVisible ? 'fade-in' : 'opacity-0'
+      }`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center text-neon-green neon-text-glow mb-16">
@@ -24,7 +26,11 @@ export function CampusBuzzPreview() {
 
         <div className="relative">
           <div className="overflow-hidden">
-            <div className={`flex gap-8 ${!prefersReducedMotion ? 'animate-scroll' : ''}`}>
+            <div
+              className={`flex gap-8 ${
+                !prefersReducedMotion ? 'animate-scroll' : ''
+              }`}
+            >
               {/* Duplicate items for seamless loop */}
               {[...buzzItems, ...buzzItems].map((item, index) => {
                 const Icon = item.icon;
