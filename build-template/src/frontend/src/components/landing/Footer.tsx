@@ -1,4 +1,4 @@
-import { Instagram, Linkedin, Twitter } from "lucide-react";
+import { Instagram, Linkedin, Twitter, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export function Footer() {
@@ -23,9 +23,17 @@ export function Footer() {
             <h4 className="text-lg font-semibold text-white mb-4">
               Contact
             </h4>
-            <p className="text-foreground/80">
-              office.sidequest26@gmail.com
-            </p>
+
+            <div className="flex items-center gap-3 group">
+              <Mail size={18} className="text-neon-green" />
+
+              <a
+                href="mailto:office.sidequest26@gmail.com?subject=SideQuest Inquiry&body=Hi SideQuest Team,%0D%0A%0D%0AI would like to ask about..."
+                className="text-neon-green transition duration-300 hover:text-white hover:underline"
+              >
+                office.sidequest26@gmail.com
+              </a>
+            </div>
           </div>
 
           {/* LEGAL SECTION */}
@@ -62,7 +70,7 @@ export function Footer() {
             href="https://twitter.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-neon-green transition"
+            className="hover:text-neon-green transition hover:scale-110"
           >
             <Twitter size={22} />
           </a>
@@ -71,7 +79,7 @@ export function Footer() {
             href="https://www.instagram.com/side_quest26/"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-neon-green transition"
+            className="hover:text-neon-green transition hover:scale-110"
           >
             <Instagram size={22} />
           </a>
@@ -80,7 +88,7 @@ export function Footer() {
             href="https://linkedin.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-neon-green transition"
+            className="hover:text-neon-green transition hover:scale-110"
           >
             <Linkedin size={22} />
           </a>
@@ -88,7 +96,6 @@ export function Footer() {
 
         {/* BOTTOM COPYRIGHT + LINKS */}
         <div className="mt-12 text-center text-sm text-foreground/70 space-y-3">
-
           <p>© 2026 SideQuest. All rights reserved.</p>
 
           <p>
@@ -104,12 +111,11 @@ export function Footer() {
 
             {"  |  "}
 
-            {/* ✅ FIXED: Using Link instead of <a> */}
             <Link
               to="/aboutus"
               className="text-neon-green font-semibold hover:underline transition"
             >
-              @aboutus
+              @AboutUs
             </Link>
           </p>
         </div>

@@ -99,12 +99,12 @@ export function HowItWorks() {
 
       {/* Explore Button */}
        <div className="flex justify-center mt-16">
-{/*           <Link
+           <Link
             to="/how-it-works"
             className="px-10 py-4 text-black font-bold rounded-lg bg-neon-green hover:shadow-[0_0_25px_#39FF14] transition-all duration-300"
           >
             Explore Now →
-          </Link>*/}
+          </Link>
         </div>
       </div>
     </section>

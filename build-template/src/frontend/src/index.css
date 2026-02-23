@@ -1,7 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@keyframes gridMove {
+  0% { background-position: 0 0, 0 0; }
+  100% { background-position: 60px 60px, 60px 60px; }
+}
 
+.animate-grid-move {
+  animation: gridMove 20s linear infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
 @layer base {
     :root {
         --radius: 0.625rem;
@@ -186,4 +201,20 @@
     .animate-scroll {
         animation: scroll 20s linear infinite;
     }
+    @keyframes scroll-x {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+    .animate-scroll-x {
+        animation: scroll-x 18s linear infinite;
+    }
+}
+/* Hide scrollbar but allow scrolling */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

@@ -1,23 +1,36 @@
 import { Routes, Route } from "react-router-dom";
 
-import { ScrollProgress } from '@/components/landing/ScrollProgress';
-import { FixedWatermark } from '@/components/landing/FixedWatermark';
-import { Navbar } from '@/components/landing/Navbar';
-import { Hero } from '@/components/landing/Hero';
-import { RealAppExperience } from '@/components/landing/RealAppExperience';
-import { InlineDownloadCTA } from '@/components/landing/InlineDownloadCTA';
-import { HowItWorks } from '@/components/landing/HowItWorks';
-import { ForEveryone } from '@/components/landing/ForEveryone';
-import { CampusBuzzPreview } from '@/components/landing/CampusBuzzPreview';
-import { FinalCTA } from '@/components/landing/FinalCTA';
-import { Footer } from '@/components/landing/Footer';
-import { FoundersSection } from '@/components/founders/FoundersSection'; // ✅ Added
-import HowItWorksPage from '@/components/pages/how-it-works/HowItWorksPage'; // ✅ Added, but not used in routing yet
+import { ScrollProgress } from "@/components/landing/ScrollProgress";
+import { FixedWatermark } from "@/components/landing/FixedWatermark";
+import { Navbar } from "@/components/landing/Navbar";
+import { Hero } from "@/components/landing/Hero";
+import { RealAppExperience } from "@/components/landing/RealAppExperience";
+import { InlineDownloadCTA } from "@/components/landing/InlineDownloadCTA";
+import { HowItWorks } from "@/components/landing/HowItWorks";
+import { ForEveryone } from "@/components/landing/ForEveryone";
+import { CampusBuzzPreview } from "@/components/landing/CampusBuzzPreview";
+import { FinalCTA } from "@/components/landing/FinalCTA";
+import { Footer } from "@/components/landing/Footer";
+import { FoundersSection } from "@/components/founders/FoundersSection";
+import HowItWorksPage from "@/components/pages/how-it-works/HowItWorksPage";
 
-// ✅ Your original landing page layout (UNCHANGED)
+import { AppShowcase } from "@/components/landing/AppShowcase";
+import { Roadmap } from "@/components/landing/Roadmap";
+
+import { NeonGridBackground } from "@/components/effects/NeonGridBackground";
+import { MouseGlow } from "@/components/effects/MouseGlow";
+import { ScrollProgressBar } from "@/components/effects/ScrollProgressBar";
+
+
 function LandingPage() {
   return (
     <div className="relative min-h-screen bg-background text-foreground">
+
+      {/* GLOBAL VISUAL EFFECTS (NOT INSIDE ROUTES) */}
+      <NeonGridBackground />
+      <MouseGlow />
+      <ScrollProgressBar />
+
       <ScrollProgress />
       <FixedWatermark />
       <Navbar />
@@ -29,6 +42,11 @@ function LandingPage() {
         <HowItWorks />
         <ForEveryone />
         <CampusBuzzPreview />
+
+        {/* NEW SECTIONS */}
+        <AppShowcase />
+        <Roadmap />
+
         <FinalCTA />
       </main>
 
@@ -37,7 +55,7 @@ function LandingPage() {
   );
 }
 
-// ✅ Routing added (ONLY NEW PART)
+
 function App() {
   return (
     <Routes>

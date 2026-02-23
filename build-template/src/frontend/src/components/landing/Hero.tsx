@@ -1,9 +1,13 @@
-import { useState, useRef, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { LANDING_CONFIG } from '@/landing/config';
-import hero from '@/assets/screenshots/sidequest-bg.mp4';
-import heroBg from "@/assets/screenshots/hero-bg.png";
-import { Link } from "react-router-dom";
+import { useState, useRef, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { LANDING_CONFIG } from "@/landing/config";
+
+import fooddelivery from "@/assets/screenshots/fooddelivery.png";
+import assignmentprinting from "@/assets/screenshots/print.png";
+import rewardearning from "@/assets/screenshots/reward.png";
+import deliveryquests from "@/assets/screenshots/deliveryquest.png";
+
 export function Hero() {
   const [videoError, setVideoError] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -18,87 +22,146 @@ export function Hero() {
 
   const handleDownload = () => {
     if (LANDING_CONFIG.openInNewTab) {
-      window.open(LANDING_CONFIG.downloadUrl, '_blank', 'noopener,noreferrer');
+      window.open(LANDING_CONFIG.downloadUrl, "_blank", "noopener,noreferrer");
     } else {
       window.location.href = LANDING_CONFIG.downloadUrl;
     }
   };
 
-  const handleBecomeRunner = () => {
-    const element = document.getElementById('for-runners');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const features = [
+    {
+      title: "Food Delivery",
+      desc: "Order meals from campus vendors instantly.",
+      img: fooddelivery,
+    },
+    {
+      title: "Assignment Printing",
+      desc: "Upload PDFs and schedule print pickup.",
+      img: assignmentprinting,
+    },
+    {
+      title: "Reward Earning",
+      desc: "Earn points and redeem campus rewards.",
+      img: rewardearning,
+    },
+    {
+      title: "Delivery Quests",
+      desc: "Complete delivery missions and earn cash.",
+      img: deliveryquests,
+    },
+  ];
 
   return (
-    <section className="relative min-h-screen md:h-screen flex items-center justify-center overflow-hidden">
-      {/* Video Background */}
-      <div className="absolute inset-0 z-0">
-        {!videoError ? (
-          <video
-            ref={videoRef}
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster={heroBg}
-            className="w-full h-full object-cover"
-            onError={() => setVideoError(true)}
-          >
-            <source src='https://wczartlciqwwcvivrtcg.supabase.co/storage/v1/object/public/sidequest-assets/sidequest-bg%20(1).mp4' type="video/mp4" />
-          </video>
-        ) : (
-          <img
-            src={heroBg}
-            alt=""
-            className="w-full h-full object-cover"
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+
+      {/* 🎥 Background Video */}
+      {!videoError && (
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover z-0"
+          onError={() => setVideoError(true)}
+        >
+          <source
+            src="https://wczartlciqwwcvivrtcg.supabase.co/storage/v1/object/public/sidequest-assets/sidequest-bg%20(1).mp4"
+            type="video/mp4"
           />
-        )}
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/70" />
-      </div>
+        </video>
+      )}
 
-      {/* Hero Content */}
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center py-20 md:py-0">
-        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-neon-green neon-text-glow mb-6 animate-fadeIn">
+      {/* Cinematic Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/70 to-black/95 z-10" />
+
+      {/* Neon Glow Layer */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,255,136,0.15),transparent_70%)] z-10" />
+
+      {/* Content */}
+      <div className="relative z-20 max-w-6xl px-6 text-center">
+
+        {/* Title Animation */}
+        <motion.h1
+          initial={{ opacity: 0, y: -40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-5xl md:text-7xl lg:text-8xl font-bold text-neon-green neon-text-glow mb-6 tracking-tight"
+        >
           SideQuest
-        </h1>
+        </motion.h1>
 
-        <h2
-          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-foreground mb-8 animate-fadeIn"
-          style={{ animationDelay: '0.2s' }}
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-2xl md:text-4xl text-white/90 font-semibold mb-8"
         >
           Level Up Your Campus Life
-        </h2>
+        </motion.h2>
 
-        <p
-          className="text-base sm:text-lg md:text-xl text-foreground/90 max-w-3xl mx-auto mb-12 leading-relaxed animate-fadeIn"
-          style={{ animationDelay: '0.4s' }}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.4 }}
+          className="text-lg md:text-xl text-white/80 leading-relaxed mb-16 max-w-3xl mx-auto"
         >
-          SideQuest transforms everyday campus life into a gamified ecosystem. Order food, print assignments, earn rewards, and complete delivery quests — all in one powerful super app.
-        </p>
+          Order food, print assignments, earn rewards, and complete delivery quests —
+          all in one powerful campus super app.
+        </motion.p>
 
-        {/* ✅ EDITED: Added mt-10 md:mt-16 to move buttons lower */}
-        <div
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mt-60 md:mt-66 animate-fadeIn"
-          style={{ animationDelay: '0.6s' }}
+        {/* 🔥 Glass Morph Feature Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+          {features.map((item, index) => (
+            <motion.div
+              key={item.title}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
+              viewport={{ once: true }}
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0px 0px 40px rgba(0,255,136,0.6)",
+              }}
+              className="relative p-8 rounded-2xl backdrop-blur-xl bg-white/5 border border-white/10 group cursor-pointer transition-all duration-300"
+            >
+              {/* Neon Pulse Border */}
+              <div className="absolute inset-0 rounded-2xl border border-neon-green/30 opacity-0 group-hover:opacity-100 animate-pulse transition-all duration-300" />
+
+              <div className="flex flex-col items-center text-center">
+                <img
+                  src={item.img}
+                  alt={item.title}
+                  className="w-20 h-20 mb-6 drop-shadow-[0_0_25px_rgba(0,255,136,0.7)]"
+                />
+
+                <h3 className="text-xl font-semibold text-white mb-3">
+                  {item.title}
+                </h3>
+
+                <p className="text-white/70 text-sm leading-relaxed">
+                  {item.desc}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* 🚀 CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
         >
           <Button
             onClick={handleDownload}
             size="lg"
-            className="px-8 py-3 bg-neon-green text-black font-semibold rounded-lg hover:shadow-[0_0_25px_#39FF14] transition-all duration-300"
+            className="px-12 py-4 bg-neon-green text-black font-bold rounded-xl hover:scale-110 hover:shadow-[0_0_50px_#39FF14] transition duration-300"
           >
             Download Now
           </Button>
-{/*
-          <Link
-            to="how-it-works"
-            className="px-8 py-3 border border-neon-green text-neon-green rounded-lg hover:shadow-[0_0_25px_#39FF14] hover:bg-neon-green hover:text-black transition-all duration-300"
-          >
-            Explore Now
-          </Link>*/}
-        </div>
+        </motion.div>
+
       </div>
     </section>
   );

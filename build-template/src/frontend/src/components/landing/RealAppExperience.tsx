@@ -2,7 +2,7 @@ import { PhoneMockup } from './PhoneMockup';
 import { useInViewFadeIn } from '@/hooks/useInViewFadeIn';
 import { useInternetIdentity } from '@/hooks/useInternetIdentity';
 import printShop from "@/assets/screenshots/print-shop.jpeg";
-import foodMenu from "@/assets/screenshots/food-menu.jpg";
+import foodMenu from "@/assets/screenshots/menu.jpeg";
 import runner from "@/assets/screenshots/runner.jpg";
 import profile from "@/assets/screenshots/profile.png";
 import tutors from "@/assets/screenshots/tutors.jpeg";

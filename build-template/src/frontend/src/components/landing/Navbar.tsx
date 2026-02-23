@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { LANDING_CONFIG } from '@/landing/config';
 import { Menu, X } from 'lucide-react';
 import logo from "@/assets/screenshots/hero.png";
+import { Link } from 'react-router-dom';
 
 export function Navbar() {
   const scrollY = useScrollY();
@@ -48,12 +49,19 @@ export function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
+            <Link
+              to="/how-it-works"
+              className="text-foreground/80 hover:text-neon-green transition-colors"
+            >
+              How It Works
+            </Link>
             <button
               onClick={() => scrollToSection('features')}
               className="text-foreground/80 hover:text-neon-green transition-colors"
             >
               Features
             </button>
+
             <button
               onClick={() => scrollToSection('for-students')}
               className="text-foreground/80 hover:text-neon-green transition-colors"

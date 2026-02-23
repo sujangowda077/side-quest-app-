@@ -1,145 +1,238 @@
-import { useState } from "react";
-import BackgroundWrapper from "@/components/layout/BackgroundWrapper";
-import Tabs from "./Tabs";
-import StepCard from "./StepCard";
-import ScreenshotBlock from "./ScreenshotBlock";
+import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import BackgroundWrapper from "@/components/layout/BackgroundWrapper";
 import { ArrowLeft } from "lucide-react";
+import signup from "@/assets/screenshots/signup.jpeg";
+import verify from "@/assets/screenshots/verify.png";
+import upi from "@/assets/screenshots/upi.jpeg";
+import menu from "@/assets/screenshots/menu.jpeg";
+import qr from "@/assets/screenshots/qr.jpeg";
+import order from "@/assets/screenshots/order.jpeg";
+import upload from "@/assets/screenshots/upload.png";
+import settings from "@/assets/screenshots/settings.png";
+import tutor from "@/assets/screenshots/tutors.jpeg";
+import update from "@/assets/screenshots/update.jpeg";
+import print from "@/assets/screenshots/print-shop.jpeg";
+import verification from "@/assets/screenshots/verification.jpeg";
+import setting from "@/assets/screenshots/print-setting.jpeg";
+type Tab =
+  | "Join Quest"
+  | "Order Food"
+  | "Printouts"
+  | "Tutors"
+  | "Updates";
+
+interface Step {
+  number: number;
+  title: string;
+  description: string;
+  screenshot?: string;
+}
 
 export default function HowItWorksPage() {
-  const [active, setActive] = useState("Join Quest");
   const navigate = useNavigate();
+  const stepsRef = useRef<HTMLDivElement>(null);
+  const tabsContainerRef = useRef<HTMLDivElement>(null);
+  const [activeTab, setActiveTab] = useState<Tab>("Join Quest");
+
+  const handleTabClick = (tab: Tab) => {
+    setActiveTab(tab);
+
+    // Auto scroll to steps
+    setTimeout(() => {
+      stepsRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
+  };
+
+  // Auto center active tab
+  useEffect(() => {
+    const container = tabsContainerRef.current;
+    const activeBtn = container?.querySelector(
+      `[data-tab="${activeTab}"]`
+    ) as HTMLElement;
+
+    if (container && activeBtn) {
+      const offset =
+        activeBtn.offsetLeft -
+        container.offsetWidth / 2 +
+        activeBtn.offsetWidth / 2;
+
+      container.scrollTo({
+        left: offset,
+        behavior: "smooth",
+      });
+    }
+  }, [activeTab]);
+
+  const stepsData: Record<Tab, Step[]> = {
+    "Join Quest": [
+      {
+        number: 1,
+        title: "Create Account",
+        description: "Sign up using email & password.",
+        screenshot: signup,
+      },
+      {
+        number: 2,
+        title: "Verify Email",
+        description: "Confirm your email.",
+        screenshot: verification,
+      },
+      {
+        number: 3,
+        title: "Upload ID & UPI",
+        description: "Add college ID and payment details.",
+        screenshot: upi,
+      },
+    ],
+    "Order Food": [
+      {
+        number: 1,
+        title: "Browse Menu",
+        description: "Choose your food.",
+        screenshot: menu,
+      },
+      {
+        number: 2,
+        title: "Scan QR & Pay",
+        description: "Pay using UPI app.",
+        screenshot: order,
+      },
+      {
+        number: 3,
+        title: "Enter UTR",
+        description: "Paste last 4 digits.",
+        screenshot: qr,
+      },
+    ],
+    Printouts: [
+      {
+        number: 1,
+        title: "Upload File",
+        description: "Upload PDF or image.",
+        screenshot: print,
+      },
+      {
+        number: 2,
+        title: "Choose Settings",
+        description: "Select size & copies.",
+        screenshot: setting,
+      },
+    ],
+    Tutors: [
+      {
+        number: 1,
+        title: "Post Request",
+        description: "Select help type & set bounty.",
+        screenshot: tutor,
+      },
+    ],
+    Updates: [
+      {
+        number: 1,
+        title: "Home Screen Updates",
+        description: "View new offers & announcements.",
+        screenshot: update,
+      },
+    ],
+  };
+
+  const steps = stepsData[activeTab];
 
   return (
     <BackgroundWrapper>
+      <div className="px-4 py-10 max-w-md mx-auto text-white">
 
-      <div className="px-6 py-20 max-w-7xl mx-auto text-white">
-          {/* Back Button */}
-          <div className="mb-10">
-            <button
-              onClick={() => navigate("/")}
-              className="flex items-center gap-2 text-neon-green hover:gap-3 transition-all duration-300 group"
-            >
-              <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform duration-300" />
-              Back to Home
-            </button>
-          </div>
+        {/* BACK BUTTON */}
+        <button
+          onClick={() => navigate("/")}
+          className="flex items-center gap-2 text-neon-green mb-6"
+        >
+          <ArrowLeft className="w-5 h-5" />
+          BACK
+        </button>
 
-        {/* Title */}
-        <h1 className="text-4xl md:text-6xl font-bold text-center text-neon-green neon-text-glow mb-4">
-          HOW SIDEQUEST WORKS
+        {/* TITLE */}
+        <h1 className="text-3xl font-bold text-neon-green neon-text-glow mb-2">
+          How SideQuest Works
         </h1>
 
-        <p className="text-center text-foreground/60 mb-12">
-          Order. Print. Learn. Earn.
+        <p className="text-white/60 mb-6 text-sm">
+          Simple. Fast. Gamified.
         </p>
 
-        <Tabs active={active} setActive={setActive} />
+        {/* PREMIUM MOBILE TABS */}
+        <div className="relative mb-8">
 
-        <div className="mt-16">
+          {/* Fade Left */}
+          <div className="pointer-events-none absolute left-0 top-0 h-full w-6 bg-gradient-to-r from-black to-transparent z-10" />
 
-          {/* JOIN QUEST */}
-          {active === "Join Quest" && (
-            <div className="grid lg:grid-cols-2 gap-12">
+          {/* Fade Right */}
+          <div className="pointer-events-none absolute right-0 top-0 h-full w-6 bg-gradient-to-l from-black to-transparent z-10" />
 
-              <div className="space-y-6">
-                <StepCard number={1} title="Tap Join Quest" description="Create account using email & password." />
-                <StepCard number={2} title="Verify Email" description="Confirm your account via email." />
-                <StepCard number={3} title="Upload ID & UPI" description="Add college ID, UPI, phone number & name." />
-              </div>
-
-              <div className="space-y-6">
-                <ScreenshotBlock label="Signup screen screenshot" />
-                <ScreenshotBlock label="Email confirmation screenshot" />
-                <ScreenshotBlock label="Profile verification screenshot" />
-              </div>
-
-            </div>
-          )}
-
-          {/* ORDER FOOD */}
-          {active === "Order Food" && (
-            <div className="grid lg:grid-cols-2 gap-12">
-
-              <div className="space-y-6">
-                <StepCard number={1} title="Browse Menu" description="Select food item from menu." />
-                <StepCard number={2} title="Scan QR & Pay" description="Screenshot QR and pay using UPI app." />
-                <StepCard number={3} title="Enter UTR" description="Paste last 4 digits of UTR." />
-                <StepCard number={4} title="Get Notified" description="Vendor accepts & order ready notification." />
-              </div>
-
-              <div className="space-y-6">
-                <ScreenshotBlock label="Menu page screenshot" />
-                <ScreenshotBlock label="QR code screenshot" />
-                <ScreenshotBlock label="UTR entry screenshot" />
-                <ScreenshotBlock label="Order accepted notification screenshot" />
-              </div>
-
-            </div>
-          )}
-
-          {/* PRINTOUTS */}
-          {active === "Printouts" && (
-            <div className="grid lg:grid-cols-2 gap-12">
-
-              <div className="space-y-6">
-                <StepCard number={1} title="Upload File" description="Upload photos or PDF." />
-                <StepCard number={2} title="Choose Settings" description="Select page size & copies." />
-                <StepCard number={3} title="Make Payment" description="Pay via QR and paste UTR." />
-              </div>
-
-              <div className="space-y-6">
-                <ScreenshotBlock label="Upload page screenshot" />
-                <ScreenshotBlock label="Print settings screenshot" />
-                <ScreenshotBlock label="Print confirmation screenshot" />
-              </div>
-
-            </div>
-          )}
-
-          {/* TUTORS */}
-          {active === "Tutors" && (
-            <div className="grid lg:grid-cols-2 gap-12">
-
-              <div className="space-y-6">
-                <StepCard number={1} title="Post Request" description="Select help type & set bounty." />
-                <StepCard number={2} title="Tutor Accepts" description="Tutor calls & fixes location." />
-                <StepCard number={3} title="Session + OTP" description="Give OTP after session." />
-              </div>
-
-              <div className="space-y-6">
-                <ScreenshotBlock label="Tutor request form screenshot" />
-                <ScreenshotBlock label="Select help type screenshot" />
-                <ScreenshotBlock label="OTP confirmation screenshot" />
-              </div>
-
-            </div>
-          )}
-
-          {/* UPDATES */}
-          {active === "Updates" && (
-            <div className="grid lg:grid-cols-2 gap-12">
-
-              <div>
-                <StepCard number={1} title="Stay Updated" description="New food items, discounts & vendor announcements appear on home screen." />
-              </div>
-
-              <div>
-                <ScreenshotBlock label="Home screen offers screenshot" />
-              </div>
-
-            </div>
-          )}
-
+          <div
+            ref={tabsContainerRef}
+            className="flex overflow-x-auto gap-3 pb-3 scrollbar-hide scroll-smooth"
+          >
+            {Object.keys(stepsData).map((tab) => (
+              <button
+                key={tab}
+                data-tab={tab}
+                onClick={() => handleTabClick(tab as Tab)}
+                className={`px-4 py-2 whitespace-nowrap rounded-full text-sm transition-all duration-300 ${
+                  activeTab === tab
+                    ? "bg-neon-green text-black font-semibold shadow-[0_0_20px_#39FF14]"
+                    : "bg-black/40 border border-neon-green/30 text-white/70"
+                }`}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
         </div>
 
-        {/* Final Statement */}
-        <div className="text-center mt-24 text-2xl text-neon-green neon-text-glow">
-          SideQuest connects campus needs in one powerful platform.
+        {/* STEPS */}
+        <div ref={stepsRef} className="space-y-10">
+          {steps.map((step) => (
+            <div
+              key={step.number}
+              className="bg-black/50 border border-neon-green/30 backdrop-blur-md rounded-2xl p-5"
+            >
+              {/* Step Header */}
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-10 h-10 rounded-lg bg-neon-green text-black flex items-center justify-center font-bold">
+                  {step.number}
+                </div>
+                <h3 className="text-base font-semibold">
+                  {step.title}
+                </h3>
+              </div>
+
+              <p className="text-white/60 text-sm mb-6">
+                {step.description}
+              </p>
+
+              {/* MOBILE SCREENSHOT FRAME */}
+              {step.screenshot && (
+                <div className="flex justify-center">
+                  <div className="relative w-52 h-[420px] bg-black rounded-[2.5rem] border-4 border-neon-green shadow-[0_0_25px_#39FF14] overflow-hidden">
+
+                    {/* Notch */}
+                    <div className="absolute top-2 left-1/2 -translate-x-1/2 w-20 h-4 bg-black rounded-full z-10" />
+
+                    <img
+                      src={step.screenshot}
+                      alt={step.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+          ))}
         </div>
 
       </div>
-
     </BackgroundWrapper>
   );
 }
