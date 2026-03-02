@@ -34,7 +34,7 @@ export function RealAppExperience() {
                 Earn Between Classes
               </h3>
               <p className="text-lg md:text-xl text-foreground/80 leading-relaxed">
-                Accept delivery quests, see your earnings upfront, and get paid instantly via UPI. Secure OTP-based delivery ensures safe handoffs.
+                Accept delivery quests, see your earnings upfront, and get paid instantly via UPI. Secure OTP-based delivery ensures safe hands.
               </p>
             </div>
           </div>
@@ -67,10 +67,10 @@ export function RealAppExperience() {
             </div>
             <div className="order-1 md:order-2 space-y-4">
               <h3 className="text-3xl md:text-4xl font-bold text-neon-green">
-                Live Campus Menus
+                Live Campus Menu
               </h3>
               <p className="text-lg md:text-xl text-foreground/80 leading-relaxed">
-                Browse real-time menus from campus cafes, see what's available, and order instantly. No more waiting in long lines.
+                Browse real-time menu from campus cafes, see what's available, and order instantly. No more waiting in long lines.
               </p>
             </div>
           </div>

@@ -7,19 +7,19 @@ export function Roadmap() {
       status: "Live"
     },
     {
-      phase: "Q2 2025",
+      phase: "Q2 2026",
       title: "Runner Network",
       description: "Enable student delivery partners across campus.",
       status: "In Progress"
     },
     {
-      phase: "Q3 2025",
+      phase: "Q3 2026",
       title: "Vendor Dashboard",
       description: "Analytics & order management panel for vendors.",
       status: "Planned"
     },
     {
-      phase: "Q4 2025",
+      phase: "Q4 2026",
       title: "AI Smart Recommendations",
       description: "Personalized food & tutor suggestions using AI.",
       status: "Planned"
