@@ -8,7 +8,7 @@ import assignmentprinting from "@/assets/screenshots/print.png";
 import rewardearning from "@/assets/screenshots/reward.png";
 import deliveryquests from "@/assets/screenshots/deliveryquest.png";
 import playstore from "@/assets/screenshots/playstore.png";
-import appstore from "@/assets/screenshots/appstore1.jpeg";
+import appstore from "@/assets/screenshots/appstore1.png";
 export function Hero() {
   const [videoError, setVideoError] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
