@@ -120,7 +120,7 @@ export function Hero() {
 >
   {/* Android */}
   <a
-    href="/SideQuest.apk"
+    href="https://drive.google.com/file/d/1lvJfsh4ow3FoskSs-ACk2j4zkpu_4CTy/view?usp=sharing"
     download
     className="w-[260px] flex justify-center transition-transform duration-300 hover:scale-105"
   >
