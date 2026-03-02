@@ -7,7 +7,8 @@ import fooddelivery from "@/assets/screenshots/fooddelivery.png";
 import assignmentprinting from "@/assets/screenshots/print.png";
 import rewardearning from "@/assets/screenshots/reward.png";
 import deliveryquests from "@/assets/screenshots/deliveryquest.png";
-
+import playstore from "@/assets/screenshots/playstore.png";
+import appstore from "@/assets/screenshots/appstore.png";
 export function Hero() {
   const [videoError, setVideoError] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -52,7 +53,7 @@ export function Hero() {
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative h-auto py-24 flex items-center justify-center overflow-hidden">
 
       {/* 🎥 Background Video */}
       {!videoError && (
@@ -109,7 +110,44 @@ export function Hero() {
           Order food, print assignments, earn rewards, and complete delivery quests —
           all in one powerful campus super app.
         </motion.p>
+      
+{/* ✅ DOWNLOAD BUTTONS HERE */}
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8, delay: 0.5 }}
+  className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16"
+>
+  {/* Android */}
+  <a
+    href="/SideQuest.apk"
+    download
+    className="w-[260px] flex justify-center transition-transform duration-300 hover:scale-105"
+  >
+    <img
+      src={playstore}
+      alt="Download for Android"
+      className="w-full h-auto object-contain"
+    />
+  </a>
 
+  {/* iOS */}
+  <a
+    href="https://sidequest-app-iota.vercel.app/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="w-[260px] flex justify-center transition-transform duration-300 hover:scale-105"
+  >
+    <img
+      src={appstore}
+      alt="Download for iOS"
+      className="w-full h-auto object-contain"
+    />
+  </a>
+</motion.div>
+
+{/* 🔥 Feature Cards */}
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16"></div>
         {/* 🔥 Glass Morph Feature Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {features.map((item, index) => (
@@ -153,13 +191,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          <Button
-            onClick={handleDownload}
-            size="lg"
-            className="px-12 py-4 bg-neon-green text-black font-bold rounded-xl hover:scale-110 hover:shadow-[0_0_50px_#39FF14] transition duration-300"
-          >
-            Download Now
-          </Button>
+        
         </motion.div>
 
       </div>
