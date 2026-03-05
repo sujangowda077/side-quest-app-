@@ -1,6 +1,6 @@
 export const LANDING_CONFIG = {
   appName: 'SideQuest',
-  downloadUrl: 'https://drive.google.com/file/d/1lzKms01Vv_yFD2-fbWaBWsckYgTDiiWj/view?usp=sharing',
+  downloadUrl: 'https://drive.google.com/file/d/1t2K4_RDegw86WxFlA0S1BLgwdmC-zzIg/view?usp=sharing',
   openInNewTab: true,
   contactEmail: 'office.sidequest26@gmail.com',
   privacyPolicyUrl: '#privacy',
